@@ -35,6 +35,17 @@
 
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
+/******/ 	// webpack-livereload-plugin
+/******/ 	(function() {
+/******/ 	  if (typeof window === "undefined") { return };
+/******/ 	  var id = "webpack-livereload-plugin-script";
+/******/ 	  if (document.getElementById(id)) { return; }
+/******/ 	  var el = document.createElement("script");
+/******/ 	  el.id = id;
+/******/ 	  el.async = true;
+/******/ 	  el.src = "http://localhost:35729/livereload.js";
+/******/ 	  document.head.appendChild(el);
+/******/ 	}());
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -55,17 +66,21 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(2);
-	var GuestList = __webpack_require__(6);
+	var buttons = __webpack_require__(6);
+
+	var GuestList = __webpack_require__(8);
 
 	module.exports = function() {
 	    var ul = document.createElement('ul');
 	    GuestList.map(function(guest) {
 	        var name = document.createTextNode(guest.name);
 	        var li = document.createElement('li');
+	        // li.className = buttons['action-button'];
 	        li.appendChild(name);
 	        ul.appendChild(li);
 	    });
 	    document.getElementById('list').appendChild(ul);
+	    console.log('test');
 	};
 
 
@@ -85,8 +100,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./style.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./style.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules=true!./style.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules=true!./style.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -104,7 +119,7 @@
 
 
 	// module
-	exports.push([module.id, "li {\n    color: blue;\n}\n", ""]);
+	exports.push([module.id, "li {\n    color: red;\n}\n", ""]);
 
 	// exports
 
@@ -421,6 +436,48 @@
 
 /***/ },
 /* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(7);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules=true!./button.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules=true!./button.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._15ofbZhH4-Oowsn0HKBNfz {\n  color: blue;\n}\n", ""]);
+
+	// exports
+	exports.locals = {
+		"action-button": "_15ofbZhH4-Oowsn0HKBNfz"
+	};
+
+/***/ },
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = [

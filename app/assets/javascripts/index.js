@@ -1,4 +1,4 @@
 
-var ShowGuestNames = require('./show_Guest_names.js');
+var ShowGuestNames = require('show_guest_names.js');
 
 ShowGuestNames();
